@@ -1,0 +1,42 @@
+/* 
+###MISSION_VERSION 1.0
+*/
+
+class Header
+{
+	gameType = Coop;
+	minPlayers = 1;
+	maxPlayers = 3; 
+};
+
+author = "Mr.Ben [Tour]";
+onLoadName = "[Tour] Support Menu v1.0";
+briefingName = "[Tour] Support Menu v1.0";
+onLoadMission = "Demonstration Of Support Units";
+onLoadMissionTime = true;
+overviewPicture = "";
+loadScreen = "img\USflag.paa";
+enableItemsDropping = 0;
+disabledAI = true; 
+enableDebugConsole = 1;
+
+respawn = 3;
+respawnDelay = 30;
+respawnDialog = 1;
+respawnTemplates[] = {"tickets"};
+respawnVehicleDelay = 30;
+
+#include "scripts\TOUR_SI\interface\hpp\interface.hpp" //required to run the interface dialog
+
+class CfgRadio											//required to make chat feature with heli pilot
+{
+	sounds[] = {};
+
+	class TOUR_SI_chatRTB
+	{
+	   name = "TOUR_SI_chatRTB";
+	   sound[] = {};
+	   title = "Hey pilot, we need to RTB!";
+	}; 		
+	  
+};
