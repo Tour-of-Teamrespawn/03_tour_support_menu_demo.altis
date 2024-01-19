@@ -123,58 +123,60 @@ If (TOUR_SI_extraEnabled == 2) then
 			<t size='0.85' font='TahomaB' color='#D0D0D0' align='left' valign='top'>You cannot report in and end the mission. There is no missions ever been created!</t> 
 		";	
 	};
-};
-
-
-if (TOUR_SI_extraEnabled == 1) then
+}else 
 {
-	if (!isNil "TOUR_SI_extraCheck") then
+	if (TOUR_SI_extraEnabled == 1) then
 	{
-		if (call TOUR_SI_extraCheck) then
+		if (!isNil "TOUR_SI_extraCheck") then
 		{
-			if (isNil "TOUR_SI_pressed_once_end") then
+			if (call TOUR_SI_extraCheck) then
 			{
-				_textHelp ctrlSetStructuredText parseText
-				"
-					<img size='3' image='\a3\Ui_f\data\GUI\Cfg\CommunicationMenu\call_ca.paa'/> <t size='1.25' font='puristaMedium'>REPORT IN</t>
-					<br/>
-					<br/>
-					<t size='0.85' font='TahomaB' color='#D0D0D0' align='left' valign='top'>Press the button again, to confirm you are ready to radio in to HQ and end the mission.</t> 
-				";
-				TOUR_SI_pressed_once_end = true;
-				_buttonEnd ctrlSetText "PRESS TO CONFIRM MISSION END";
+				if (isNil "TOUR_SI_pressed_once_end") then
+				{
+					_textHelp ctrlSetStructuredText parseText
+					"
+						<img size='3' image='\a3\Ui_f\data\GUI\Cfg\CommunicationMenu\call_ca.paa'/> <t size='1.25' font='puristaMedium'>REPORT IN</t>
+						<br/>
+						<br/>
+						<t size='0.85' font='TahomaB' color='#D0D0D0' align='left' valign='top'>Press the button again, to confirm you are ready to radio in to HQ and end the mission.</t> 
+					";
+					TOUR_SI_pressed_once_end = true;
+					_buttonEnd ctrlSetText "PRESS TO CONFIRM MISSION END";
+				}else
+				{
+					_textHelp ctrlSetStructuredText parseText
+					"
+						<img size='3' image='\a3\Ui_f\data\GUI\Cfg\CommunicationMenu\call_ca.paa'/> <t size='1.25' font='puristaMedium'>REPORT IN</t>
+						<br/>
+						<br/>
+						<t size='0.85' font='TahomaB' color='#D0D0D0' align='left' valign='top'>Reporting to HQ via Radio...</t> 
+					";	
+					TOUR_SI_core setVariable ["TOUR_SI_inUse", true, true];
+					player remoteExecCall ["TOUR_SI_fnc_radio_end", 2, false];
+					_buttonEnd ctrlSetText "MISSION ENDING";
+					{_x ctrlEnable false}forEach [_buttonExecute, _buttonEnd, _buttonInfo, _buttonConfirm, _buttonReject, _comboSupport, _comboType, _comboUnit, _comboBehaviour, _sliderIntSpeed, _sliderAmountHeight, _sliderRadius, _sliderIntSpeed];
+				};						
 			}else
 			{
-				_textHelp ctrlSetStructuredText parseText
-				"
-					<img size='3' image='\a3\Ui_f\data\GUI\Cfg\CommunicationMenu\call_ca.paa'/> <t size='1.25' font='puristaMedium'>REPORT IN</t>
-					<br/>
-					<br/>
-					<t size='0.85' font='TahomaB' color='#D0D0D0' align='left' valign='top'>Reporting to HQ via Radio...</t> 
-				";	
-				TOUR_SI_core setVariable ["TOUR_SI_inUse", true, true];
-				player remoteExecCall ["TOUR_SI_fnc_radio_end", 2, false];
-				_buttonEnd ctrlSetText "MISSION ENDING";
-				{_x ctrlEnable false}forEach [_buttonExecute, _buttonEnd, _buttonInfo, _buttonConfirm, _buttonReject, _comboSupport, _comboType, _comboUnit, _comboBehaviour, _sliderIntSpeed, _sliderAmountHeight, _sliderRadius, _sliderIntSpeed];
-			};						
-		}else
-		{
-				_textHelp ctrlSetStructuredText parseText
-				"
-					<img size='3' image='\a3\Ui_f\data\GUI\Cfg\CommunicationMenu\call_ca.paa'/> <t size='1.25' font='puristaMedium'>REPORT IN</t>
-					<br/>
-					<br/>
-					<t size='0.85' font='TahomaB' color='#D0D0D0' align='left' valign='top'>You are currently unable to report in.</t> 
-				";						
+					_textHelp ctrlSetStructuredText parseText
+					"
+						<img size='3' image='\a3\Ui_f\data\GUI\Cfg\CommunicationMenu\call_ca.paa'/> <t size='1.25' font='puristaMedium'>REPORT IN</t>
+						<br/>
+						<br/>
+						<t size='0.85' font='TahomaB' color='#D0D0D0' align='left' valign='top'>You are currently unable to report in.</t> 
+					";						
+			};
 		};
+	}else
+	{
+		_textHelp ctrlSetStructuredText parseText
+		"
+			<img size='3' image='\a3\Ui_f\data\GUI\Cfg\CommunicationMenu\call_ca.paa'/> <t size='1.25' font='puristaMedium'>REPORT IN:</t>
+			<br/>
+			<br/>
+			<t size='0.85' font='TahomaB' color='#D0D0D0' align='left' valign='top'>You cannot report in and end the mission. There is no active operations area!</t> 
+		";
 	};
-}else
-{
-	_textHelp ctrlSetStructuredText parseText
-	"
-		<img size='3' image='\a3\Ui_f\data\GUI\Cfg\CommunicationMenu\call_ca.paa'/> <t size='1.25' font='puristaMedium'>REPORT IN:</t>
-		<br/>
-		<br/>
-		<t size='0.85' font='TahomaB' color='#D0D0D0' align='left' valign='top'>You cannot report in and end the mission. There is no active operations area!</t> 
-	";
 };
+
+

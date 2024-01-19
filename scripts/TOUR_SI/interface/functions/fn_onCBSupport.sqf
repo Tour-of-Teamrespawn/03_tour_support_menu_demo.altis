@@ -40,6 +40,8 @@ _supportType = (_comboSupport lbText _index);
 
 disableSerialization;
 
+_buttonEnd ctrlSetText "END MISSION";
+
 if (!isNil {TOUR_SI_core getVariable "TOUR_SI_inuse"}) exitWith
 {
 	_textHelp ctrlSetStructuredText parseText

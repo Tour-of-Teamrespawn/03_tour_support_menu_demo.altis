@@ -18,7 +18,7 @@ _si =
 	WEST, // Side of the support menu units
 	_siAction, // action condition as string, to bring up the support menu
 	"(alive player) && (player == leader group player) && (player distance TOUR_Officer < 2.5) && (count (TDMC_core getVariable ""A2S_taskArray"") == 0)", // To allow action for setup during game - specifically made for DMC missions though can be used
-	1, // boolean - to define whether it needs integrating into the mission for ending mission or for integration to DMC to allow for additional functions to find enemy locations on maps. 0 = off, 1 = mission end option, 2 = DMC integration.
+	1, // int - to define whether it needs integrating into the mission for ending mission or for integration to DMC to allow for additional functions to find enemy locations on maps. 0 = off, 1 = mission end option, 2 = DMC integration.
 	[
 		[																// array for artillery
 			"artillery",												// string to define is as artillery 
@@ -35,8 +35,7 @@ _si =
 				["2rnd_155mm_mo_lg", 0],
 				["6rnd_155mm_mo_mine", 0],
 				["6rnd_155mm_mo_at_mine", 0],
-				["2rnd_155mm_mo_cluster", 10],
-				["2rnd_155mm_mo_cluster", 0]
+				["2rnd_155mm_mo_cluster", 10]
 			],
 			{[player, "ACRE_PRC148"] call acre_api_fnc_hasKindOfRadio}	// code to return a boolean that will allow the user of the support menu to access the artillery
 		],
