@@ -1,4 +1,4 @@
-private ["_position", "_rounds", "_amount", "_radius", "_interval", "_unit", "_groupstring", "_grouparty", "_ammo", "_strPos"];
+private ["_position", "_rounds", "_amount", "_radius", "_interval", "_unit", "_groupstring", "_grouparty", "_ammo", "_strPos", "_pos"];
 	
 _position = _this select 0;
 _rounds = _this select 1;
@@ -14,11 +14,11 @@ _ammo = switch (toLower _rounds) do
 	case "82mm he rounds": {["sh_82mm_amos", "82mm HE rounds", "8rnd_82mm_mo_shells"]};
 	case "82mm flare rounds":	{["flare_82mm_amos_white", "82mm flare rounds", "8rnd_82mm_mo_flare_white"]};
 	case "82mm smoke rounds": {["smoke_82mm_amos_white", "82mm smoke rounds", "8rnd_82mm_mo_smoke_white"]};
-	case "82mm guided rounds": {["sh_82mm_amos_guided", "82mm guided rounds", "8rnd_82mm_mo_guided"]};
-	case "82mm laser guided rounds": {["sh_82mm_amos_lg", "82mm laser guided rounds", "8rnd_82mm_mo_lg"]};
+	case "82mm guided rounds": {["sh_82mm_amos", "82mm guided rounds", "8rnd_82mm_mo_guided"]};
+	case "82mm laser guided rounds": {["sh_82mm_amos", "82mm laser guided rounds", "8rnd_82mm_mo_lg"]};
 	case "155mm smoke rounds": {["smoke_120mm_amos_white", "155mm smoke rounds", "6rnd_155mm_mo_smoke"]};
-	case "155mm guided rounds":	{["sh_155mm_amos_guided", "6155mm guided rounds", "2rnd_155mm_mo_guided"]};
-	case "155mm laser guided rounds": {["sh_155mm_amos_lg", "155mm laser guided rounds", "2rnd_155mm_mo_lg"]};
+	case "155mm guided rounds":	{["sh_155mm_amos", "155mm guided rounds", "2rnd_155mm_mo_guided"]};
+	case "155mm laser guided rounds": {["sh_155mm_amos", "155mm laser guided rounds", "2rnd_155mm_mo_lg"]};
 	case "155mm mine rounds": {["mine_155mm_amos_range", "155mm mine rounds", "6rnd_155mm_mo_mine"]};
 	case "155mm at mine rounds": {["at_mine_155mm_amos_range", "155mm AT mine rounds", "6rnd_155mm_mo_at_mine"]};
 	case "155mm cluster rounds": {["cluster_155mm_amos", "155mm cluster rounds", "2rnd_155mm_mo_cluster"]};
@@ -51,21 +51,19 @@ _ammo = switch (toLower _rounds) do
 			_amount = _this select 3;
 			_radius = _this select 4;
 			sleep (17 + (10 + 18));
+
 			for "_i" from 1 to _amount do
-			{		
-				_pos = [_position, ((round (random _radius)) + (round (random 15))), (round (random 360))]call BIS_fnc_relPos;
-				_height = (getTerrainHeightASL _pos);
-				if (_height <= 0) then
+			{			
+				if (((_ammo select 1) in ["155mm laser guided rounds", "155mm guided rounds"])&&(count (_position nearEntities [["LaserTargetE","LaserTargetW","I_IRStrobe","W_IRStrobe","E_IRStrobe"], 50]) > 0)) then 
 				{
-					_pos = [_pos select 0, _pos select 1, 0 + 500];
-				}else
+					_pos = getpos ((_position nearEntities [["LaserTargetE","LaserTargetW","I_IRStrobe","W_IRStrobe","E_IRStrobe"], 50]) select 0);
+				}else 
 				{
-					_pos = [_pos select 0, _pos select 1, _height + 500];
+					_pos = [_position, ((round (random _radius)) + (round (random 15))), (round (random 360))]call BIS_fnc_relPos;
 				};
-				_shell = (_ammo select 0) createVehicle _pos;
-				_shell setPosASL _pos;
-				_shell setVectorUp [-1, 0, 0];
-				_shell setVelocity [0, 0, -50];
+
+				[_pos,(_ammo select 0),0,1,1,{false},0,500,200,["shell1","shell2"]] spawn BIS_fnc_fireSupportVirtual;
+
 				sleep _interval;
 			};
 			sleep 10;
@@ -85,7 +83,7 @@ _ammo = switch (toLower _rounds) do
 		_strPos = _position call TOUR_SI_fnc_gridFix;
 		_unit sideChat format ["%2, we require %4 strike at %3. OVER", _groupstring, _grouparty, _strPos, (_ammo select 1)];
 		sleep 5;
-		if ((_ammo select 1) in ["mortar laser guided", "heavy laser guided"]) then
+		if ((_ammo select 1) in ["155mm laser guided rounds", "155mm guided rounds"]) then
 		{
 			leader (TOUR_SI_core getVariable "TOUR_SI_artygroup") sideChat format ["Copy %1, fire mission received. %2 firing, paint your target!  OVER", _groupstring, _grouparty];
 		}else

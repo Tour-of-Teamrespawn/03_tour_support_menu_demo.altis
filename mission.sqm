@@ -8,14 +8,14 @@ class EditorData
 	toggles=1;
 	class ItemIDProvider
 	{
-		nextID=22;
+		nextID=26;
 	};
 	class Camera
 	{
-		pos[]={15195.964,67.192986,17162.406};
-		dir[]={-0.47645012,-0.53930938,0.69436359};
-		up[]={-0.30513197,0.84210765,0.44468984};
-		aside[]={0.82455432,0,0.56578285};
+		pos[]={15169.241,29.86825,17174.232};
+		dir[]={-0.29161566,-0.32328746,0.90024745};
+		up[]={-0.099625498,0.94630086,0.30755416};
+		aside[]={0.95133334,-7.4505806e-009,0.30816382};
 	};
 };
 binarizationWanted=0;
@@ -32,7 +32,7 @@ addons[]=
 	"ace_smallarms",
 	"ace_ballistics",
 	"A3_Weapons_F_Pistols_P07",
-	"ace_optics",
+	"A3_Weapons_F_Exp",
 	"acre_main",
 	"UK3CB_BAF_Equipment_Glasses",
 	"ace_nightvision",
@@ -52,13 +52,14 @@ addons[]=
 	"A3_Air_F_Heli_Light_01",
 	"A3_Air_F_Beta_Heli_Attack_01",
 	"A3_Air_F_Beta_Heli_Transport_01",
+	"ace_optics",
 	"A3_Structures_F_Mil_Helipads"
 };
 class AddonsMetaData
 {
 	class List
 	{
-		items=25;
+		items=26;
 		class Item0
 		{
 			className="A3_Characters_F";
@@ -103,10 +104,10 @@ class AddonsMetaData
 		};
 		class Item6
 		{
-			className="ace_optics";
-			name="ACE3 - Optics";
-			author="ACE-Team";
-			url="https://ace3.acemod.org/";
+			className="A3_Weapons_F_Exp";
+			name="Arma 3 Apex - Weapons and Accessories";
+			author="Bohemia Interactive";
+			url="https://www.arma3.com";
 		};
 		class Item7
 		{
@@ -229,6 +230,13 @@ class AddonsMetaData
 		};
 		class Item24
 		{
+			className="ace_optics";
+			name="ACE3 - Optics";
+			author="ACE-Team";
+			url="https://ace3.acemod.org/";
+		};
+		class Item25
+		{
 			className="A3_Structures_F_Mil";
 			name="Arma 3 - Military Buildings and Structures";
 			author="Bohemia Interactive";
@@ -286,7 +294,7 @@ class Mission
 					class PositionInfo
 					{
 						position[]={15161.13,17.911438,17196.816};
-						angles[]={0,4.907176,0};
+						angles[]={0,1.4294298,-0};
 					};
 					side="West";
 					flags=7;
@@ -318,7 +326,12 @@ class Mission
 							};
 							class binocular
 							{
-								name="Binocular";
+								name="Laserdesignator_01_khk_F";
+								class primaryMuzzleMag
+								{
+									name="Laserbatteries";
+									ammoLeft=1;
+								};
 							};
 							class uniform
 							{
@@ -545,7 +558,7 @@ class Mission
 					class PositionInfo
 					{
 						position[]={14859.262,17.99188,16511.469};
-						angles[]={-0,4.448565,0};
+						angles[]={0,4.448565,0};
 					};
 					side="West";
 					flags=6;
@@ -563,7 +576,7 @@ class Mission
 					class PositionInfo
 					{
 						position[]={14859.258,19.771004,16511.461};
-						angles[]={-0,4.448565,0};
+						angles[]={0,4.448565,0};
 					};
 					side="West";
 					class Attributes
@@ -617,7 +630,7 @@ class Mission
 			class PositionInfo
 			{
 				position[]={15140.985,19.689144,17222.365};
-				angles[]={-0,4.448565,0};
+				angles[]={0,4.448565,0};
 			};
 			side="West";
 			flags=6;
@@ -658,7 +671,7 @@ class Mission
 					class PositionInfo
 					{
 						position[]={14867.357,18.133102,16540.561};
-						angles[]={-0,4.2721996,0};
+						angles[]={0,4.2721996,0};
 					};
 					side="West";
 					flags=6;
@@ -676,7 +689,7 @@ class Mission
 					class PositionInfo
 					{
 						position[]={14867.357,20.055038,16540.561};
-						angles[]={-0,4.2721996,0};
+						angles[]={0,4.2721996,0};
 					};
 					side="West";
 					class Attributes
@@ -731,7 +744,7 @@ class Mission
 			class PositionInfo
 			{
 				position[]={15120.316,19.831936,17205.113};
-				angles[]={-0,4.2721996,0};
+				angles[]={0,4.2721996,0};
 			};
 			side="West";
 			flags=6;
@@ -773,7 +786,7 @@ class Mission
 					class PositionInfo
 					{
 						position[]={14823.4,17.944332,16350.274};
-						angles[]={-0,4.2003093,0};
+						angles[]={0,4.2003093,0};
 					};
 					side="West";
 					flags=6;
@@ -791,7 +804,7 @@ class Mission
 					class PositionInfo
 					{
 						position[]={14823.4,20.083584,16350.28};
-						angles[]={-0,4.2003093,0};
+						angles[]={0,4.2003093,0};
 					};
 					side="West";
 					class Attributes
@@ -807,7 +820,7 @@ class Mission
 					class PositionInfo
 					{
 						position[]={14823.4,20.083584,16350.28};
-						angles[]={-0,4.2003093,0};
+						angles[]={0,4.2003093,0};
 					};
 					side="West";
 					class Attributes
@@ -824,7 +837,7 @@ class Mission
 					class PositionInfo
 					{
 						position[]={14823.4,20.083584,16350.28};
-						angles[]={-0,4.2003093,0};
+						angles[]={0,4.2003093,0};
 					};
 					side="West";
 					class Attributes
@@ -900,7 +913,7 @@ class Mission
 			class PositionInfo
 			{
 				position[]={15164.742,20.049259,17245.402};
-				angles[]={-0,4.2003093,0};
+				angles[]={0,4.2003093,0};
 			};
 			side="West";
 			flags=6;
@@ -1360,7 +1373,7 @@ class Mission
 			class PositionInfo
 			{
 				position[]={15164.77,17.91,17245.232};
-				angles[]={-0,4.9305549,0};
+				angles[]={0,4.9305549,0};
 			};
 			side="Empty";
 			flags=4;

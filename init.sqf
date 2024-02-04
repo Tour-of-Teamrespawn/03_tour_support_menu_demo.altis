@@ -31,8 +31,8 @@ _si =
 				["8rnd_82mm_mo_lg", 0],
 				["32rnd_155mm_mo_shells", 0],
 				["6rnd_155mm_mo_smoke", 30],
-				["2rnd_155mm_mo_guided", 0],
-				["2rnd_155mm_mo_lg", 0],
+				["2rnd_155mm_mo_guided", 3],
+				["2rnd_155mm_mo_lg", 3],
 				["6rnd_155mm_mo_mine", 0],
 				["6rnd_155mm_mo_at_mine", 0],
 				["2rnd_155mm_mo_cluster", 10]
